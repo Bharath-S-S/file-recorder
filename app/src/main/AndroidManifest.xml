@@ -13,7 +13,7 @@
         android:theme="@style/Theme.FileRecorder"
         tools:targetApi="31">
         <activity
-            android:name=".NewCourseActivity"
+            android:name=".NewFileActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

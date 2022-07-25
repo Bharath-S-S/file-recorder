@@ -5,8 +5,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 // below line is for setting table name.
-@Entity(tableName = "course_table")
-public class CourseModal {
+@Entity(tableName = "file_table")
+public class FileModal {
 
     // below line is to auto increment
     // id for each course.
@@ -17,49 +17,49 @@ public class CourseModal {
 
     // below line is a variable
     // for course name.
-    private String courseName;
+    private String fileName;
 
     // below line is use for
     // course description.
-    private String courseDescription;
+    private String dateIn;
 
     // below line is use
     // for course duration.
-    private String courseDuration;
+    private String dateOut;
 
     // below line we are creating constructor class.
     // inside constructor class we are not passing
     // our id because it is incrementing automatically
-    public CourseModal(String courseName, String courseDescription, String courseDuration) {
-        this.courseName = courseName;
-        this.courseDescription = courseDescription;
-        this.courseDuration = courseDuration;
+    public FileModal(String fileName, String dateIn, String dateOut) {
+        this.fileName = fileName;
+        this.dateIn = dateIn;
+        this.dateOut = dateOut;
     }
 
     // on below line we are creating
     // getter and setter methods.
-    public String getCourseName() {
-        return courseName;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
-    public String getCourseDescription() {
-        return courseDescription;
+    public String getDateIn() {
+        return dateIn;
     }
 
-    public void setCourseDescription(String courseDescription) {
-        this.courseDescription = courseDescription;
+    public void setDateIn(String dateIn) {
+        this.dateIn = dateIn;
     }
 
-    public String getCourseDuration() {
-        return courseDuration;
+    public String getDateOut() {
+        return dateOut;
     }
 
-    public void setCourseDuration(String courseDuration) {
-        this.courseDuration = courseDuration;
+    public void setDateOut(String dateOut) {
+        this.dateOut = dateOut;
     }
 
     public int getId() {

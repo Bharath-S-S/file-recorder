@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CourseRVAdapter extends ListAdapter<FileModal, CourseRVAdapter.ViewHolder> {
+public class FileRVAdapter extends ListAdapter<FileModal, FileRVAdapter.ViewHolder> {
 
     // creating a variable for on item click listener.
     private OnItemClickListener listener;
 
     // creating a constructor class for our adapter class.
-    CourseRVAdapter() {
+    FileRVAdapter() {
         super(DIFF_CALLBACK);
     }
 
@@ -30,9 +30,9 @@ public class CourseRVAdapter extends ListAdapter<FileModal, CourseRVAdapter.View
         @Override
         public boolean areContentsTheSame(FileModal oldItem, FileModal newItem) {
             // below line is to check the course name, description and course duration.
-            return oldItem.getCourseName().equals(newItem.getCourseName()) &&
-                    oldItem.getCourseDescription().equals(newItem.getCourseDescription()) &&
-                    oldItem.getCourseDuration().equals(newItem.getCourseDuration());
+            return oldItem.getFileName().equals(newItem.getFileName()) &&
+                    oldItem.getDateIn().equals(newItem.getDateIn()) &&
+                    oldItem.getDateOut().equals(newItem.getDateOut());
         }
     };
 
@@ -51,9 +51,9 @@ public class CourseRVAdapter extends ListAdapter<FileModal, CourseRVAdapter.View
         // below line of code is use to set data to
         // each item of our recycler view.
         FileModal model = getCourseAt(position);
-        holder.courseNameTV.setText(model.getCourseName());
-        holder.courseDescTV.setText(model.getCourseDescription());
-        holder.courseDurationTV.setText(model.getCourseDuration());
+        holder.courseNameTV.setText(model.getFileName());
+        holder.courseDescTV.setText(model.getDateIn());
+        holder.courseDurationTV.setText(model.getDateOut());
     }
 
     // creating a method to get course modal for a specific position.

@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
-public class NewCourseActivity extends AppCompatActivity {
+public class NewFileActivity extends AppCompatActivity {
 
     // creating a constant string variable for our
     // course name, description and duration.
@@ -61,7 +61,7 @@ public class NewCourseActivity extends AppCompatActivity {
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                datePickerDialog = new DatePickerDialog(NewCourseActivity.this, onDateSetListener, year, month, day);
+                datePickerDialog = new DatePickerDialog(NewFileActivity.this, onDateSetListener, year, month, day);
                 datePickerDialog.show();
             }
         });
@@ -79,7 +79,7 @@ public class NewCourseActivity extends AppCompatActivity {
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                datePickerDialog = new DatePickerDialog(NewCourseActivity.this, onDateSetListener, year, month, day);
+                datePickerDialog = new DatePickerDialog(NewFileActivity.this, onDateSetListener, year, month, day);
                 datePickerDialog.show();
             }
         });
@@ -93,7 +93,7 @@ public class NewCourseActivity extends AppCompatActivity {
                 String courseDesc = dateIn.getText().toString();
                 String courseDuration = dateOut.getText().toString();
                 if (courseName.isEmpty() || courseDesc.isEmpty() || courseDuration.isEmpty()) {
-                    Toast.makeText(NewCourseActivity.this, "Please enter the valid details.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewFileActivity.this, "Please enter the valid details.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // calling a method to save our course.

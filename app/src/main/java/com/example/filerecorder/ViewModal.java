@@ -11,31 +11,31 @@ import java.util.List;
 public class ViewModal extends AndroidViewModel {
 
     // creating a new variable for course repository.
-    private CourseRepository repository;
+    private FileRepository repository;
 
     // below line is to create a variable for live
     // data where all the courses are present.
-    private LiveData<List<CourseModal>> allCourses;
+    private LiveData<List<FileModal>> allCourses;
 
     // constructor for our view modal.
     public ViewModal(@NonNull Application application) {
         super(application);
-        repository = new CourseRepository(application);
+        repository = new FileRepository(application);
         allCourses = repository.getAllCourses();
     }
 
     // below method is use to insert the data to our repository.
-    public void insert(CourseModal model) {
+    public void insert(FileModal model) {
         repository.insert(model);
     }
 
     // below line is to update data in our repository.
-    public void update(CourseModal model) {
+    public void update(FileModal model) {
         repository.update(model);
     }
 
     // below line is to delete the data in our repository.
-    public void delete(CourseModal model) {
+    public void delete(FileModal model) {
         repository.delete(model);
     }
 
@@ -45,7 +45,7 @@ public class ViewModal extends AndroidViewModel {
     }
 
     // below method is to get all the courses in our list.
-    public LiveData<List<CourseModal>> getAllCourses() {
+    public LiveData<List<FileModal>> getAllCourses() {
         return allCourses;
     }
 }

@@ -20,10 +20,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // creating a variables for our recycler view.
-    private RecyclerView coursesRV;
     private static final int ADD_COURSE_REQUEST = 1;
     private static final int EDIT_COURSE_REQUEST = 2;
+    // creating a variables for our recycler view.
+    private RecyclerView coursesRV;
     private ViewModal viewmodal;
 
     @Override
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // starting a new activity for adding a new course
                 // and passing a constant value in it.
-                Intent intent = new Intent(MainActivity.this, NewCourseActivity.class);
+                Intent intent = new Intent(MainActivity.this, NewFileActivity.class);
                 startActivityForResult(intent, ADD_COURSE_REQUEST);
             }
         });
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         coursesRV.setHasFixedSize(true);
 
         // initializing adapter for recycler view.
-        final CourseRVAdapter adapter = new CourseRVAdapter();
+        final FileRVAdapter adapter = new FileRVAdapter();
 
         // setting adapter class for recycler view.
         coursesRV.setAdapter(adapter);
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
 
         // below line is use to get all the courses from view modal.
-        viewmodal.getAllCourses().observe(this, new Observer<List<CourseModal>>() {
+        viewmodal.getAllCourses().observe(this, new Observer<List<FileModal>>() {
             @Override
-            public void onChanged(List<CourseModal> models) {
+            public void onChanged(List<FileModal> models) {
                 // when the data is changed in our models we are
                 // adding that list to our adapter class.
                 adapter.submitList(models);
@@ -85,17 +85,17 @@ public class MainActivity extends AppCompatActivity {
                 // below line is use to attach this to recycler view.
                         attachToRecyclerView(coursesRV);
         // below line is use to set item click listener for our item of recycler view.
-        adapter.setOnItemClickListener(new CourseRVAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new FileRVAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(CourseModal model) {
+            public void onItemClick(FileModal model) {
                 // after clicking on item of recycler view
                 // we are opening a new activity and passing
                 // a data to our activity.
-                Intent intent = new Intent(MainActivity.this, NewCourseActivity.class);
-                intent.putExtra(NewCourseActivity.EXTRA_ID, model.getId());
-                intent.putExtra(NewCourseActivity.EXTRA_COURSE_NAME, model.getCourseName());
-                intent.putExtra(NewCourseActivity.EXTRA_DESCRIPTION, model.getCourseDescription());
-                intent.putExtra(NewCourseActivity.EXTRA_DURATION, model.getCourseDuration());
+                Intent intent = new Intent(MainActivity.this, NewFileActivity.class);
+                intent.putExtra(NewFileActivity.EXTRA_ID, model.getId());
+                intent.putExtra(NewFileActivity.EXTRA_COURSE_NAME, model.getFileName());
+                intent.putExtra(NewFileActivity.EXTRA_DESCRIPTION, model.getDateIn());
+                intent.putExtra(NewFileActivity.EXTRA_DURATION, model.getDateOut());
 
                 // below line is to start a new activity and
                 // adding a edit course constant.
@@ -108,22 +108,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ADD_COURSE_REQUEST && resultCode == RESULT_OK) {
-            String courseName = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
-            String courseDescription = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
-            String courseDuration = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
-            CourseModal model = new CourseModal(courseName, courseDescription, courseDuration);
+            String courseName = data.getStringExtra(NewFileActivity.EXTRA_COURSE_NAME);
+            String courseDescription = data.getStringExtra(NewFileActivity.EXTRA_DESCRIPTION);
+            String courseDuration = data.getStringExtra(NewFileActivity.EXTRA_DURATION);
+            FileModal model = new FileModal(courseName, courseDescription, courseDuration);
             viewmodal.insert(model);
             Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_COURSE_REQUEST && resultCode == RESULT_OK) {
-            int id = data.getIntExtra(NewCourseActivity.EXTRA_ID, -1);
+            int id = data.getIntExtra(NewFileActivity.EXTRA_ID, -1);
             if (id == -1) {
                 Toast.makeText(this, "File can't be updated", Toast.LENGTH_SHORT).show();
                 return;
             }
-            String courseName = data.getStringExtra(NewCourseActivity.EXTRA_COURSE_NAME);
-            String courseDesc = data.getStringExtra(NewCourseActivity.EXTRA_DESCRIPTION);
-            String courseDuration = data.getStringExtra(NewCourseActivity.EXTRA_DURATION);
-            CourseModal model = new CourseModal(courseName, courseDesc, courseDuration);
+            String courseName = data.getStringExtra(NewFileActivity.EXTRA_COURSE_NAME);
+            String courseDesc = data.getStringExtra(NewFileActivity.EXTRA_DESCRIPTION);
+            String courseDuration = data.getStringExtra(NewFileActivity.EXTRA_DURATION);
+            FileModal model = new FileModal(courseName, courseDesc, courseDuration);
             model.setId(id);
             viewmodal.update(model);
             Toast.makeText(this, "File updated", Toast.LENGTH_SHORT).show();

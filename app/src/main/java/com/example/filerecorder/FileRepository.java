@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class CourseRepository {
+public class FileRepository {
 
     // below line is the create a variable
     // for dao and list for all courses.
@@ -16,10 +16,10 @@ public class CourseRepository {
 
     // creating a constructor for our variables
     // and passing the variables to it.
-    public CourseRepository(Application application) {
+    public FileRepository(Application application) {
         FileDatabase database = com.example.filerecorder.FileDatabase.getInstance(application);
         dao = database.Dao();
-        allCourses = dao.getAllCourses();
+        allCourses = dao.getAllFiles();
     }
 
     // creating a method to insert the data to our database.
@@ -107,7 +107,7 @@ public class CourseRepository {
         protected Void doInBackground(Void... voids) {
             // on below line calling method
             // to delete all courses.
-            dao.deleteAllCourses();
+            dao.deleteAllFiles();
             return null;
         }
     }
