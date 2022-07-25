@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.ViewHolder> {
+public class CourseRVAdapter extends ListAdapter<FileModal, CourseRVAdapter.ViewHolder> {
 
     // creating a variable for on item click listener.
     private OnItemClickListener listener;
@@ -21,14 +21,14 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     }
 
     // creating a call back for item of recycler view.
-    private static final DiffUtil.ItemCallback<CourseModal> DIFF_CALLBACK = new DiffUtil.ItemCallback<CourseModal>() {
+    private static final DiffUtil.ItemCallback<FileModal> DIFF_CALLBACK = new DiffUtil.ItemCallback<FileModal>() {
         @Override
-        public boolean areItemsTheSame(CourseModal oldItem, CourseModal newItem) {
+        public boolean areItemsTheSame(FileModal oldItem, FileModal newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(CourseModal oldItem, CourseModal newItem) {
+        public boolean areContentsTheSame(FileModal oldItem, FileModal newItem) {
             // below line is to check the course name, description and course duration.
             return oldItem.getCourseName().equals(newItem.getCourseName()) &&
                     oldItem.getCourseDescription().equals(newItem.getCourseDescription()) &&
@@ -50,14 +50,14 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // below line of code is use to set data to
         // each item of our recycler view.
-        CourseModal model = getCourseAt(position);
+        FileModal model = getCourseAt(position);
         holder.courseNameTV.setText(model.getCourseName());
         holder.courseDescTV.setText(model.getCourseDescription());
         holder.courseDurationTV.setText(model.getCourseDuration());
     }
 
     // creating a method to get course modal for a specific position.
-    public CourseModal getCourseAt(int position) {
+    public FileModal getCourseAt(int position) {
         return getItem(position);
     }
 
@@ -88,7 +88,7 @@ public class CourseRVAdapter extends ListAdapter<CourseModal, CourseRVAdapter.Vi
     }
 
     public interface OnItemClickListener {
-        void onItemClick(CourseModal model);
+        void onItemClick(FileModal model);
     }
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
