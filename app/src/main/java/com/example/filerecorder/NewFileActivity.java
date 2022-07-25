@@ -18,24 +18,24 @@ public class NewFileActivity extends AppCompatActivity {
     // creating a constant string variable for our
     // course name, description and duration.
     public static final String EXTRA_ID = "com.gtappdevelopers.gfgroomdatabase.EXTRA_ID";
-    public static final String EXTRA_COURSE_NAME = "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_NAME";
-    public static final String EXTRA_DESCRIPTION = "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DESCRIPTION";
-    public static final String EXTRA_DURATION = "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DURATION";
+    public static final String EXTRA_FILE_NAME = "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_NAME";
+    public static final String EXTRA_DATEIN = "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DESCRIPTION";
+    public static final String EXTRA_DATEOUT = "com.gtappdevelopers.gfgroomdatabase.EXTRA_COURSE_DURATION";
     // creating a variables for our button and edittext.
-    private EditText fileNmae, dateIn, dateOut;
-    private Button courseBtn;
+    private EditText fileNameET, dateInET, dateOutET;
+    private Button saveBtn;
     private DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_course);
+        setContentView(R.layout.activity_new_file);
 
         // initializing our variables for each view.
-        fileNmae = findViewById(R.id.fileName);
-        dateIn = findViewById(R.id.dateIn);
-        dateOut = findViewById(R.id.dateOut);
-        courseBtn = findViewById(R.id.idBtnSaveCourse);
+        fileNameET = findViewById(R.id.fileName);
+        dateInET = findViewById(R.id.dateIn);
+        dateOutET = findViewById(R.id.dateOut);
+        saveBtn = findViewById(R.id.idBtnSaveCourse);
 
         // below line is to get intent as we
         // are getting data via an intent.
@@ -43,18 +43,18 @@ public class NewFileActivity extends AppCompatActivity {
         if (intent.hasExtra(EXTRA_ID)) {
             // if we get id for our data then we are
             // setting values to our edit text fields.
-            fileNmae.setText(intent.getStringExtra(EXTRA_COURSE_NAME));
-            dateIn.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
-            dateOut.setText(intent.getStringExtra(EXTRA_DURATION));
+            fileNameET.setText(intent.getStringExtra(EXTRA_FILE_NAME));
+            dateInET.setText(intent.getStringExtra(EXTRA_DATEIN));
+            dateOutET.setText(intent.getStringExtra(EXTRA_DATEOUT));
         }
-        dateIn.setOnClickListener(new View.OnClickListener() {
+        dateInET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         String selectedDate = day + "/" + (month + 1) + "/" + year;
-                        dateIn.setText(selectedDate);
+                        dateInET.setText(selectedDate);
                     }
                 };
                 Calendar calendar = Calendar.getInstance();
@@ -65,14 +65,14 @@ public class NewFileActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-        dateOut.setOnClickListener(new View.OnClickListener() {
+        dateOutET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         String selectedDate = day + "/" + (month + 1) + "/" + year;
-                        dateOut.setText(selectedDate);
+                        dateOutET.setText(selectedDate);
                     }
                 };
                 Calendar calendar = Calendar.getInstance();
@@ -84,33 +84,33 @@ public class NewFileActivity extends AppCompatActivity {
             }
         });
         // adding on click listener for our save button.
-        courseBtn.setOnClickListener(new View.OnClickListener() {
+        saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // getting text value from edittext and validating if
                 // the text fields are empty or not.
-                String courseName = fileNmae.getText().toString();
-                String courseDesc = dateIn.getText().toString();
-                String courseDuration = dateOut.getText().toString();
-                if (courseName.isEmpty() || courseDesc.isEmpty() || courseDuration.isEmpty()) {
+                String fileName = fileNameET.getText().toString();
+                String dateIn = dateInET.getText().toString();
+                String dateOut = dateOutET.getText().toString();
+                if (fileName.isEmpty() || dateIn.isEmpty() || dateOut.isEmpty()) {
                     Toast.makeText(NewFileActivity.this, "Please enter the valid details.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // calling a method to save our course.
-                saveCourse(courseName, courseDesc, courseDuration);
+                saveFile(fileName, dateIn, dateOut);
             }
         });
     }
 
-    private void saveCourse(String courseName, String courseDescription, String courseDuration) {
+    private void saveFile(String fileName, String dateIn, String dateOut) {
         // inside this method we are passing
         // all the data via an intent.
         Intent data = new Intent();
 
         // in below line we are passing all our course detail.
-        data.putExtra(EXTRA_COURSE_NAME, courseName);
-        data.putExtra(EXTRA_DESCRIPTION, courseDescription);
-        data.putExtra(EXTRA_DURATION, courseDuration);
+        data.putExtra(EXTRA_FILE_NAME, fileName);
+        data.putExtra(EXTRA_DATEIN, dateIn);
+        data.putExtra(EXTRA_DATEOUT, dateOut);
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
         if (id != -1) {
             // in below line we are passing our id.

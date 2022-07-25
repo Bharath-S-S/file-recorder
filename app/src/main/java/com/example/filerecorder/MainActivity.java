@@ -20,8 +20,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int ADD_COURSE_REQUEST = 1;
-    private static final int EDIT_COURSE_REQUEST = 2;
+    private static final int ADD_FILE_REQUEST = 1;
+    private static final int EDIT_FILE_REQUEST = 2;
     // creating a variables for our recycler view.
     private RecyclerView coursesRV;
     private ViewModal viewmodal;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 // starting a new activity for adding a new course
                 // and passing a constant value in it.
                 Intent intent = new Intent(MainActivity.this, NewFileActivity.class);
-                startActivityForResult(intent, ADD_COURSE_REQUEST);
+                startActivityForResult(intent, ADD_FILE_REQUEST);
             }
         });
 
@@ -93,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
                 // a data to our activity.
                 Intent intent = new Intent(MainActivity.this, NewFileActivity.class);
                 intent.putExtra(NewFileActivity.EXTRA_ID, model.getId());
-                intent.putExtra(NewFileActivity.EXTRA_COURSE_NAME, model.getFileName());
-                intent.putExtra(NewFileActivity.EXTRA_DESCRIPTION, model.getDateIn());
-                intent.putExtra(NewFileActivity.EXTRA_DURATION, model.getDateOut());
+                intent.putExtra(NewFileActivity.EXTRA_FILE_NAME, model.getFileName());
+                intent.putExtra(NewFileActivity.EXTRA_DATEIN, model.getDateIn());
+                intent.putExtra(NewFileActivity.EXTRA_DATEOUT, model.getDateOut());
 
                 // below line is to start a new activity and
                 // adding a edit course constant.
-                startActivityForResult(intent, EDIT_COURSE_REQUEST);
+                startActivityForResult(intent, EDIT_FILE_REQUEST);
             }
         });
     }
@@ -107,22 +107,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ADD_COURSE_REQUEST && resultCode == RESULT_OK) {
-            String courseName = data.getStringExtra(NewFileActivity.EXTRA_COURSE_NAME);
-            String courseDescription = data.getStringExtra(NewFileActivity.EXTRA_DESCRIPTION);
-            String courseDuration = data.getStringExtra(NewFileActivity.EXTRA_DURATION);
+        if (requestCode == ADD_FILE_REQUEST && resultCode == RESULT_OK) {
+            String courseName = data.getStringExtra(NewFileActivity.EXTRA_FILE_NAME);
+            String courseDescription = data.getStringExtra(NewFileActivity.EXTRA_DATEIN);
+            String courseDuration = data.getStringExtra(NewFileActivity.EXTRA_DATEOUT);
             FileModal model = new FileModal(courseName, courseDescription, courseDuration);
             viewmodal.insert(model);
             Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
-        } else if (requestCode == EDIT_COURSE_REQUEST && resultCode == RESULT_OK) {
+        } else if (requestCode == EDIT_FILE_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(NewFileActivity.EXTRA_ID, -1);
             if (id == -1) {
                 Toast.makeText(this, "File can't be updated", Toast.LENGTH_SHORT).show();
                 return;
             }
-            String courseName = data.getStringExtra(NewFileActivity.EXTRA_COURSE_NAME);
-            String courseDesc = data.getStringExtra(NewFileActivity.EXTRA_DESCRIPTION);
-            String courseDuration = data.getStringExtra(NewFileActivity.EXTRA_DURATION);
+            String courseName = data.getStringExtra(NewFileActivity.EXTRA_FILE_NAME);
+            String courseDesc = data.getStringExtra(NewFileActivity.EXTRA_DATEIN);
+            String courseDuration = data.getStringExtra(NewFileActivity.EXTRA_DATEOUT);
             FileModal model = new FileModal(courseName, courseDesc, courseDuration);
             model.setId(id);
             viewmodal.update(model);

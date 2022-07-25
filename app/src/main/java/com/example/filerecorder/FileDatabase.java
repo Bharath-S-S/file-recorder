@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 // adding annotation for our database entities and db version.
-@Database(entities = {FileModal.class}, version = 2)
+@Database(entities = {FileModal.class}, version = 3)
 public abstract class FileDatabase extends RoomDatabase {
 
     // below line is to create instance

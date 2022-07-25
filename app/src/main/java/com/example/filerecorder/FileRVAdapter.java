@@ -42,7 +42,7 @@ public class FileRVAdapter extends ListAdapter<FileModal, FileRVAdapter.ViewHold
         // below line is use to inflate our layout
         // file for each item of our recycler view.
         View item = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.course_rv_item, parent, false);
+                .inflate(R.layout.file_rv_item, parent, false);
         return new ViewHolder(item);
     }
 
