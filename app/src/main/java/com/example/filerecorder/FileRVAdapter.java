@@ -54,6 +54,8 @@ public class FileRVAdapter extends ListAdapter<FileModal, FileRVAdapter.ViewHold
         holder.courseNameTV.setText(model.getFileName());
         holder.courseDescTV.setText(model.getDateIn());
         holder.courseDurationTV.setText(model.getDateOut());
+        holder.timeIn.setText(model.getTimeIn());
+        holder.timeOut.setText(model.getTimeOut());
     }
 
     // creating a method to get course modal for a specific position.
@@ -63,7 +65,7 @@ public class FileRVAdapter extends ListAdapter<FileModal, FileRVAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // view holder class to create a variable for each view.
-        TextView courseNameTV, courseDescTV, courseDurationTV;
+        TextView courseNameTV, courseDescTV, courseDurationTV,timeIn,timeOut;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +73,8 @@ public class FileRVAdapter extends ListAdapter<FileModal, FileRVAdapter.ViewHold
             courseNameTV = itemView.findViewById(R.id.idTVCourseName);
             courseDescTV = itemView.findViewById(R.id.idTVCourseDescription);
             courseDurationTV = itemView.findViewById(R.id.idTVCourseDuration);
+            timeIn = itemView.findViewById(R.id.timeInRv);
+            timeOut = itemView.findViewById(R.id.timeoutRV);
 
             // adding on click listener for each item of recycler view.
             itemView.setOnClickListener(new View.OnClickListener() {

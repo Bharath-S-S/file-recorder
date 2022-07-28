@@ -44,6 +44,24 @@
             android:text="Date Out"
             android:textColor="@color/black"
             android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/timeInRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Time In"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/timeoutRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Time Out"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

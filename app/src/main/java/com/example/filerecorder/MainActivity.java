@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(NewFileActivity.EXTRA_FILE_NAME, model.getFileName());
                 intent.putExtra(NewFileActivity.EXTRA_DATEIN, model.getDateIn());
                 intent.putExtra(NewFileActivity.EXTRA_DATEOUT, model.getDateOut());
+                intent.putExtra("timeIn", model.getTimeIn());
+                intent.putExtra("timeOut", model.getTimeOut());
 
                 // below line is to start a new activity and
                 // adding a edit course constant.
@@ -108,10 +110,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ADD_FILE_REQUEST && resultCode == RESULT_OK) {
-            String courseName = data.getStringExtra(NewFileActivity.EXTRA_FILE_NAME);
-            String courseDescription = data.getStringExtra(NewFileActivity.EXTRA_DATEIN);
-            String courseDuration = data.getStringExtra(NewFileActivity.EXTRA_DATEOUT);
-            FileModal model = new FileModal(courseName, courseDescription, courseDuration);
+            String fileName = data.getStringExtra(NewFileActivity.EXTRA_FILE_NAME);
+            String dateIn = data.getStringExtra(NewFileActivity.EXTRA_DATEIN);
+            String dateOut = data.getStringExtra(NewFileActivity.EXTRA_DATEOUT);
+            String timeIn = data.getStringExtra("timeIn");
+            String timeOut = data.getStringExtra("timeOut");
+            FileModal model = new FileModal(fileName, dateIn, dateOut, timeIn, timeOut);
             viewmodal.insert(model);
             Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_FILE_REQUEST && resultCode == RESULT_OK) {
@@ -120,10 +124,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "File can't be updated", Toast.LENGTH_SHORT).show();
                 return;
             }
-            String courseName = data.getStringExtra(NewFileActivity.EXTRA_FILE_NAME);
-            String courseDesc = data.getStringExtra(NewFileActivity.EXTRA_DATEIN);
-            String courseDuration = data.getStringExtra(NewFileActivity.EXTRA_DATEOUT);
-            FileModal model = new FileModal(courseName, courseDesc, courseDuration);
+            String fileName = data.getStringExtra(NewFileActivity.EXTRA_FILE_NAME);
+            String dateIn = data.getStringExtra(NewFileActivity.EXTRA_DATEIN);
+            String dateOut = data.getStringExtra(NewFileActivity.EXTRA_DATEOUT);
+            String timeIn = data.getStringExtra("timeIn");
+            String timeOut = data.getStringExtra("timeOut");
+            FileModal model = new FileModal(fileName, dateIn, dateOut, timeIn, timeOut);
             model.setId(id);
             viewmodal.update(model);
             Toast.makeText(this, "File updated", Toast.LENGTH_SHORT).show();

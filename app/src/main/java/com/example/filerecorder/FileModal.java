@@ -27,13 +27,35 @@ public class FileModal {
     // for course duration.
     private String dateOut;
 
+    private String timeIn;
+
+    private String timeOut;
+
     // below line we are creating constructor class.
     // inside constructor class we are not passing
     // our id because it is incrementing automatically
-    public FileModal(String fileName, String dateIn, String dateOut) {
+    public FileModal(String fileName, String dateIn, String dateOut,String timeIn,String timeOut) {
         this.fileName = fileName;
         this.dateIn = dateIn;
         this.dateOut = dateOut;
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
+    }
+
+    public String getTimeIn() {
+        return timeIn;
+    }
+
+    public void setTimeIn(String timeIn) {
+        this.timeIn = timeIn;
+    }
+
+    public String getTimeOut() {
+        return timeOut;
+    }
+
+    public void setTimeOut(String timeOut) {
+        this.timeOut = timeOut;
     }
 
     // on below line we are creating
